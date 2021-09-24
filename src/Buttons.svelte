@@ -16,7 +16,11 @@
 		} else if (value === '√') {
 			inputValue.update(v => v + '√(');
 		} else if (value === '=') {
-			outputValue.set(evaluate($inputValue.replace('√', 'sqrt')));
+			try {
+				outputValue.set(evaluate($inputValue.replace('√', 'sqrt')));
+			}	catch (e) {
+				outputValue.set('ERROR!')
+			}
 		} else {
 			inputValue.update(v => v + value);
 		}

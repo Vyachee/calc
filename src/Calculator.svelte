@@ -5,12 +5,19 @@
     import {inputValue, outputValue} from "./store";
     import {evaluate} from "mathjs";
 
+    function calculate() {
+        try {
+            outputValue.set(evaluate($inputValue.replace('√', 'sqrt')));
+        }	catch (e) {
+            outputValue.set('ERROR!')
+        }
+    }
 
 </script>
 
 <div class="calculator">
     <Header/>
-    <Display on:equalsAction={() => outputValue.set(evaluate($inputValue.replace('√', 'sqrt')))}/>
+    <Display on:equalsAction={calculate}/>
     <Buttons/>
 </div>
 
