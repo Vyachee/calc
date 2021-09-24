@@ -2,13 +2,15 @@
     import Buttons from "./Buttons.svelte";
     import Header from "./Header.svelte";
     import Display from "./Display.svelte";
+    import {inputValue, outputValue} from "./store";
+    import {evaluate} from "mathjs";
 
 
 </script>
 
 <div class="calculator">
     <Header/>
-    <Display/>
+    <Display on:equalsAction={() => outputValue.set(evaluate($inputValue.replace('√', 'sqrt')))}/>
     <Buttons/>
 </div>
 

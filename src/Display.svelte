@@ -1,9 +1,19 @@
 <script>
 	import {inputValue, outputValue} from "./store";
+	import {createEventDispatcher} from 'svelte';
+
+
+	const dispatch = createEventDispatcher();
+	const onKeyPress = e => {
+		if (e.charCode === 13) {
+			dispatch('equalsAction');
+		}
+	};
+
 </script>
 
 <div class="display">
-	<input type="text" bind:value={$inputValue} class="data-input">
+	<input type="text" on:keypress={onKeyPress} bind:value={$inputValue} class="data-input">
 	{#if $outputValue !== ''}
 		<div class="output-display">
 			<span class="equals">=</span>
